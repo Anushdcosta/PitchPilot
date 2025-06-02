@@ -1,1 +1,79 @@
-# startup-pitcher
+# 🚀 Startup Idea Generator
+
+An AI-powered tool that generates and refines startup pitch ideas based on user keywords. Built using Langchain.js, Tailwind CSS, React, and TypeScript.
+
+## ✨ Features
+
+- Generate startup ideas from keywords
+- Remix/refine pitch elements (name, tagline, etc.)
+- Export clean PDFs
+- Surprise Me! button for random ideas
+- REST API backend (Node.js + Express)
+- Clean UI with Tailwind CSS
+- Written in TypeScript
+
+## 🛠 Tech Stack
+
+- **Frontend**: React, Tailwind CSS, TypeScript
+- **Backend**: Node.js, Express
+- **AI/Logic**: Langchain.js
+- **PDF**: jsPDF
+- **Deployment**: GitHub Codespaces & Replit
+#
+# 🧑‍💻 Getting Started
+
+
+## ⚡ One-Click Codespaces Setup
+
+Click below to launch this project in a ready-to-code GitHub Codespace:
+
+[![Open in Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?repo=Anushdcosta/startup-pitcher&ref=main)
+
+## 🧪 Local Development Setup
+
+This branch (`local-alternative`) is optimized for running locally on your own machine.
+
+---
+
+### 🔧 Prerequisites
+
+- Node.js (v18+)
+- Python 3.10+
+- npm & pip
+- ollama
+
+---
+
+## 🖥 Intallation
+
+### 🧰 Install Ollama
+
+To run local LLMs (like Mistral or Phi), you'll need Ollama installed:
+
+<p align="left">
+  <a href="https://ollama.com/download/windows" target="_blank">
+    <img src="https://img.shields.io/badge/Download%20Ollama-Windows-blue?style=for-the-badge&logo=windows" alt="Download Ollama for Windows">
+  </a>
+</p>
+ - After Installing ollama run the below code in CMD/Powershell.
+
+```bash
+ollama pull nous-hermes2
+```
+## Github Repository
+
+## 🛠️ Getting Started
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/your-username/your-repo.git
+
+# 2. Checkout the local branch
+git checkout local-alternative
+
+# 3. Install dependencies
+.\setup.bat
+
+# 4. Start the development server
+npm run dev
+```
