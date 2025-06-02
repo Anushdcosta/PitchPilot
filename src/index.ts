@@ -4,11 +4,35 @@ import dotenv from "dotenv";
 import fetch from "node-fetch";
 import { generatePitch } from "./pitchGen.js";
 import { v4 as uuidv4 } from 'uuid';
+import { fileURLToPath } from "url";
 import { refineIdea } from "./refineIdea.js";
 import { regenerateField } from "./fieldRefiner.js";
+import fs from "fs";
+import path from "path";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+// Load root .env
+dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
-dotenv.config(); // Don't forget to call this
+// Check root .env
+const githubToken = process.env.GITHUB_TOKEN;
+if (!githubToken || githubToken === "Your github token here") {
+  console.error("❌ ERROR: GITHUB_TOKEN in root .env is not set correctly.");
+  process.exit(1);
+}
+
+// Check frontend/.env
+const frontendEnvPath = path.resolve(__dirname, "../frontend/.env");
+
+if (!fs.existsSync(frontendEnvPath)) {
+  console.error("❌ ERROR: frontend/.env file is missing.");
+  process.exit(1);
+}
+
+const frontendEnv = fs.readFileSync(frontendEnvPath, "utf-8");
+
+console.log("✅ Environment check passed!");
 
 const app = express();
 const port = process.env.PORT || 3000;
