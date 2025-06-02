@@ -45,10 +45,32 @@ export default function App() {
   };
 
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    safeFetch(keywords);
-  };
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setLoading(true);
+  setError("");
+  setData(null);
+
+  try {
+    const res = await fetch("/api/generate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ keywords }),
+    });
+
+    const text = await res.text();
+    console.log("📦 Raw response text:", text);
+
+    const json = JSON.parse(text);
+    if (!res.ok) throw new Error(json.error || "Unknown error");
+    setData(json);
+  } catch (err: any) {
+    setError(err.message);
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   const surpriseMe = () => {
     safeFetch("");
