@@ -5,13 +5,13 @@ import fetch from "node-fetch";
 import { generatePitch } from "./pitchGen.js";
 import { v4 as uuidv4 } from 'uuid';
 import { refineIdea } from "./refineIdea.js";
-
+import { regenerateField } from "./FieldRefiner.js";
 
 dotenv.config(); // Don't forget to call this
 
 const app = express();
 const port = process.env.PORT || 3000;
-const storedPitches = [];
+let storedPitches = [];
 
 // Middleware
 app.use(cors());
@@ -30,15 +30,15 @@ app.post('/generate', async (req, res) => {
     const rawKeywords = req.body.keywords;
     keywords = rawKeywords?.trim() || "Generate a completely random, creative startup idea with no theme";
 
-    const pitch = await generatePitch(keywords);
-    const pitch2 = await generatePitch(keywords + "- another idea");
-    console.log(pitch, pitch2);
-    pitch.id = uuidv4(); // before pushing to storedPitches
+    const pitch1 = await generatePitch(keywords + uuidv4());
+    const pitch2 = await generatePitch(keywords + uuidv4()  +" - a different idea from the previous to serve as an alternative");
+    console.log(pitch1, pitch2);
+    pitch1.id = uuidv4(); // before pushing to storedPitches
     pitch2.id = uuidv4();
-    storedPitches.push(pitch);
+    storedPitches.push(pitch1);
     storedPitches.push(pitch2);
     res.json({
-      pitches: [pitch, pitch2]
+      pitches: [pitch1, pitch2]
     });
     
   } catch (err) {
@@ -65,14 +65,30 @@ app.post("/remix", async (req, res) => {
 
   try {
     const remix = await generatePitch(`Give me an alternate version of this idea: ${pitch.name} - ${pitch.oneLiner}, Change the name and other info by a bit`);
+    remix.id = uuidv4()
+    storedPitches.push(remix)
     res.json({ remix });
   } catch (err) {
     console.error("Remix error:", err);
     res.status(500).json({ error: "Failed to remix pitch." });
   }
 });
-// routes/refine.ts (or directly in app.js)
 
+app.post("/refine/field", async (req, res) => {
+  const { pitch, field } = req.body;
+  console.log("starting")
+  if (!pitch || !field) {
+    return res.status(400).json({ error: "Missing pitch or field" });
+  }
+
+  try {
+    const newValue = await regenerateField(pitch, field);
+    res.json({ value: newValue });
+  } catch (err: any) {
+    console.error("Field regeneration failed:", err);
+    res.status(500).json({ error: err.message || "Failed to regenerate field" });
+  }
+});
 app.post("/refine", async (req, res) => {
   const { pitch, answers } = req.body;
 

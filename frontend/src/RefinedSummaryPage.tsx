@@ -1,34 +1,67 @@
-import { useParams } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import { useEffect, useState } from "react";
 import { RefreshCw } from "lucide-react"; // optional: lucide icon for shuffle
+
 
 export default function RefinedSummaryPage() {
   const { id } = useParams();
   const [refinedSummary, setRefinedSummary] = useState<any | null>(null);
+  const [loadingField, setLoadingField] = useState<string | null>(null);
 
-  const handleShuffle = (field: string) => {
-    console.log(`Shuffle clicked for: ${field}`);
-    // Later: implement logic to regenerate just that field
-    // For now, placeholder logging only
+
+  const handleShuffle = async (field: string) => {
+    if (!refinedSummary || !id) return;
+    setLoadingField(field); // start loading
+
+    try {
+      const res = await fetch("/api/refine/field", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          pitch: refinedSummary,
+          field,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Shuffle failed");
+
+      const updated = {
+        ...refinedSummary,
+        [field]: data.value,
+      };
+
+      setRefinedSummary(updated);
+      localStorage.setItem(`pitch-${id}-refinedSummary`, JSON.stringify(updated));
+    } catch (err) {
+      console.error("Shuffle failed:", err);
+      alert("❌ Failed to shuffle field. Please try again.");
+    } finally {
+      setLoadingField(null); // stop loading
+    }
   };
 
-  const Section = ({ label, value, fieldKey }: { label: string; value?: string; fieldKey: string }) => {
-    if (!value) return null;
-    return (
-      <div>
-        <div className="flex items-center justify-between mb-1">
-          <h3 className="text-lg font-semibold text-blue-300">{label}</h3>
-          <button
-            onClick={() => handleShuffle(fieldKey)}
-            className="text-sm text-gray-400 hover:text-white flex items-center gap-1"
-          >
-            <RefreshCw className="w-4 h-4" /> Shuffle
-          </button>
+    const Section = ({ label, value, fieldKey }: { label: string; value?: string; fieldKey: string }) => {
+      if (!value) return null;
+      return (
+        <div>
+          <div className="flex items-center justify-between mb-1">
+            <h3 className="text-lg font-semibold text-blue-300">{label}</h3>
+            <button
+              onClick={() => handleShuffle(fieldKey)}
+              disabled={loadingField === fieldKey}
+              className={`text-sm ${
+                loadingField === fieldKey ? "text-gray-500 cursor-not-allowed" : "text-gray-400 hover:text-white"
+              } flex items-center gap-1`}
+            >
+              <RefreshCw className={`w-4 h-4 ${loadingField === fieldKey ? "animate-spin" : ""}`} />
+              {loadingField === fieldKey ? "Shuffling..." : "Shuffle"}
+            </button>
+          </div>
+          <p className="text-gray-200">{value}</p>
         </div>
-        <p className="text-gray-200">{value}</p>
-      </div>
-    );
-  };
+      );
+    };
 
   useEffect(() => {
     const stored = localStorage.getItem(`pitch-${id}-refinedSummary`);
