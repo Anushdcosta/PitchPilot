@@ -38,8 +38,7 @@ This branch (`local-alternative`) is optimized for running locally on your own m
 ### 🔧 Prerequisites
 
 - Node.js (v18+)
-- Python 3.10+
-- npm & pip
+- npm
 - ollama
 
 ---
