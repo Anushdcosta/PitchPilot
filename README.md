@@ -43,6 +43,11 @@ For the Github Token click the below button to visit the models page
 </p>
 Click Use this Model and follow the steps to generate a fine grain token
 
+Once Token is added Run the following command in Codespace terminal:
+```bash
+npm run dev
+```
+
 ## METHOD 2: 🧪 Local Development Setup
 
 This branch (`local-alternative`) is optimized for running locally on your own machine.
