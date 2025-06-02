@@ -13,7 +13,9 @@ export default function ChatCard({ pitch, onReplaceOther }: any) {
   const cardRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(`/pitch/${pitch.id}`);
+    if (!menuVisible) {
+      navigate(`/pitch/${pitch.id}`);
+    }
   };
   const handleRightClick = (e: React.MouseEvent) => {
     e.preventDefault();

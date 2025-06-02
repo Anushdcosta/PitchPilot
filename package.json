@@ -19,9 +19,11 @@
   "license": "ISC",
   "description": "Startup pitch generator with AI-powered image generation",
   "dependencies": {
+    "@azure-rest/ai-inference": "^1.0.0-beta.6",
+    "@azure/core-auth": "^1.9.0",
     "@huggingface/inference": "^2.6.4",
     "@langchain/community": "^0.3.45",
-    "@langchain/ollama": "^0.2.0",
+    "@langchain/openai": "^0.5.11",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
