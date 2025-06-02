@@ -1,0 +1,22 @@
+### Test Generate Pitch
+POST http://localhost:11434/api/generate
+Content-Type: application/json
+
+{
+  "model": "nous-hermes2",
+  "prompt": "Generate a startup pitch for an AI-powered personal assistant. The response should be a valid JSON object with these fields: name (string), oneLiner (string), elevatorPitch (string), and tagline (string).",
+  "stream": false,
+  "options": {
+    "temperature": 0.8,
+    "max_tokens": 500,
+    "top_p": 0.9
+  }
+}
+
+### Test with Server Endpoint
+POST http://localhost:3000/generate
+Content-Type: application/json
+
+{
+  "keywords": "AI-powered medical app with a point system"
+}
