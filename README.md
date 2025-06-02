@@ -64,15 +64,15 @@ ollama pull nous-hermes2
 ## 🛠️ Getting Started
 
 ```bash
-# 1. Clone the repository
+::1. Clone the repository
 git clone https://github.com/your-username/your-repo.git
 
-# 2. Checkout the local branch
+::2. Checkout the local branch
 git checkout local-alternative
 
-# 3. Install dependencies
+::3. Install dependencies
 .\setup.bat
 
-# 4. Start the development server
+::4. Start the development server
 npm run dev
 ```
