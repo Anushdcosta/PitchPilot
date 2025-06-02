@@ -51,7 +51,7 @@ Only return a valid JSON object with the populated fields.
     .join("\n");
 
   const model = new Ollama({
-    model: "llama2",
+    model: "mistral",
     temperature: 0.7,
     topP: 0.9,
   });

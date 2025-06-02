@@ -25,31 +25,34 @@ app.get('/health', (req, res) => {
 // Generate pitch and image endpoint
 app.post('/generate', async (req, res) => {
   let { keywords } = req.body;
-  try {
-    console.log('Generating pitch for keywords:', keywords);
-    const rawKeywords = req.body.keywords;
-    keywords = rawKeywords?.trim() || "Generate a completely random, creative startup idea with no theme";
+  const rawKeywords = keywords?.trim() || "Generate a completely random, creative startup idea with no theme";
 
-    const pitch = await generatePitch(keywords);
-    const pitch2 = await generatePitch(keywords + "- another idea");
-    console.log(pitch, pitch2);
-    pitch.id = uuidv4(); // before pushing to storedPitches
+  try {
+    console.log('🚀 Received /generate request with keywords:', rawKeywords);
+
+    const pitch = await generatePitch(rawKeywords);
+    console.log('✅ Pitch 1 generated:', pitch);
+
+    const pitch2 = await generatePitch(rawKeywords + "- another idea");
+    console.log('✅ Pitch 2 generated:', pitch2);
+
+    pitch.id = uuidv4();
     pitch2.id = uuidv4();
+
     storedPitches.push(pitch);
     storedPitches.push(pitch2);
+
+    console.log("✅ Sending response to client");
     res.json({
-      pitches: [pitch, pitch2]
+      pitches: [pitch, pitch2],
     });
-    
   } catch (err) {
-    console.error('Error in /generate:', err);
-    const errorMessage = err instanceof Error ? err.message : 'Unknown error';
-    res.status(500).json({ 
-      error: "Failed to generate content",
-      details: errorMessage
-    });
+    console.error('❌ Error in /generate handler:', err);
+    const message = err instanceof Error ? err.message : 'Unknown error';
+    res.status(500).json({ error: message });
   }
 });
+
 app.get('/pitch/:id', (req, res) => {
   const pitch = storedPitches.find(p => p.id === req.params.id);
   if (!pitch) return res.status(404).json({ error: "Not found" });
@@ -87,6 +90,11 @@ app.post("/refine", async (req, res) => {
     console.error("Refinement failed:", err);
     res.status(500).json({ error: "Failed to refine idea" });
   }
+});
+
+app.use((err, req, res, next) => {
+  console.error("🔥 Uncaught backend error:", err);
+  res.status(500).json({ error: "Internal server error" });
 });
 
 
