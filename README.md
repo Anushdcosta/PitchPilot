@@ -23,13 +23,13 @@ An AI-powered tool that generates and refines startup pitch ideas based on user 
 # 🧑‍💻 Getting Started
 
 
-## ⚡ One-Click Codespaces Setup
+## METHOD 1:  ⚡ One-Click Codespaces Setup
 
 Click below to launch this project in a ready-to-code GitHub Codespace:
 
 [![Open in Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?repo=Anushdcosta/startup-pitcher&ref=main)
 
-## 🧪 Local Development Setup
+## METHOD 2: 🧪 Local Development Setup
 
 This branch (`local-alternative`) is optimized for running locally on your own machine.
 
