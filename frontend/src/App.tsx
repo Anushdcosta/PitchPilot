@@ -35,14 +35,17 @@ export default function App() {
   };
 
   const replaceOtherCard = (sourcePitch: any, remixPitch: any) => {
-    setData((prev) => {
-      if (!prev?.pitches) return null;
-      const newPitches = prev.pitches.map((p) =>
-        p.name === sourcePitch.name ? remixPitch : p
-      );
-      return { pitches: newPitches };
-    });
-  };
+  setData((prev) => {
+    if (!prev?.pitches || prev.pitches.length < 2) return prev;
+
+    // Find the other pitch to replace
+    const newPitches = prev.pitches.map((p) =>
+      p.name !== sourcePitch.name ? remixPitch : p
+    );
+
+    return { pitches: newPitches };
+  });
+};
 
   const surpriseMe = async () => {
     setLoading(true);

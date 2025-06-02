@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import html2pdf from "html2pdf.js";
+
 
 const questions = [
   "What’s your vision for this idea?",
@@ -100,16 +100,7 @@ export default function PitchDetail() {
     step < questions.length - 1 ? setStep(step + 1) : setSubmitted(true);
   };
 
-  const handleExportPDF = () => {
-    const element = document.getElementById("refined-summary-block");
-    if (!element) return;
-    html2pdf().set({
-      margin: 0.75,
-      filename: `${pitch.name}_RefinedSummary.pdf`,
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
-    }).from(element).save();
-  };
+  
 
   if (!pitch) return <div>Loading...</div>;
 
@@ -179,13 +170,6 @@ export default function PitchDetail() {
                 📄 View Summary Report
               </button>
             </Link>
-
-            {/* <button
-              onClick={handleExportPDF}
-              className="mt-4 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition font-semibold"
-            >
-              📄 Export as PDF
-            </button> */}
           </div>
         )}
       </div>

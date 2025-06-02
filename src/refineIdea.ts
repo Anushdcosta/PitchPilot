@@ -2,16 +2,22 @@ import { Ollama } from "@langchain/ollama";
 import { PromptTemplate } from "@langchain/core/prompts";
 import { LLMChain } from "langchain/chains";
 
-interface PitchData {
+export interface PitchResponse {
+  id: string;
   name: string;
   oneLiner: string;
   elevatorPitch: string;
   tagline: string;
 }
 
-export async function refineIdea(pitch: PitchData, answers: string[]): Promise<string> {
+export async function refineIdea(pitch: PitchResponse, answers: string[]): Promise<any> {
+  const formattedAnswers = answers
+    .map((answer, idx) => `Q${idx + 1}: ${answer}`)
+    .join("\n");
+
   const promptTemplate = new PromptTemplate({
-  template: `You are a startup refinement assistant.
+  template: `
+You are a startup refinement assistant.
 
 Given this startup pitch:
 Name: {name}
@@ -24,7 +30,7 @@ And these user reflections:
 
 Return a concise but insightful summary as a valid JSON object with **only** these keys:
 
-{ 
+{{ 
   "name": string,
   "oneLiner": string,
   "elevatorPitch": string,
@@ -35,24 +41,25 @@ Return a concise but insightful summary as a valid JSON object with **only** the
   "tools": string,
   "risks": string,
   "uniquePoint": string
-}
+}}
 
 ⚠️ Do not explain or include anything outside of the JSON object.
 
 Only return a valid JSON object with the populated fields.
-
-`,
-  inputVariables: ["name", "oneLiner", "elevatorPitch", "tagline", "formattedAnswers"],
+  `.trim(),
+  inputVariables: [
+    "name",
+    "oneLiner",
+    "elevatorPitch",
+    "tagline",
+    "formattedAnswers",
+  ],
 });
 
 
-  const formattedAnswers = answers
-    .map((answer, idx) => `Q${idx + 1}: ${answer}`)
-    .join("\n");
-
   const model = new Ollama({
     model: "nous-hermes2",
-    temperature: 0.7,
+    temperature: 0.8,
     topP: 0.9,
   });
 
@@ -69,5 +76,26 @@ Only return a valid JSON object with the populated fields.
     formattedAnswers,
   });
 
-  return result.text.trim();
+  const raw = result.text;
+  console.debug("📝 Raw model response:", raw);
+
+  try {
+    const match = raw.match(/\{[\s\S]*\}/);
+    if (!match) throw new Error("❌ Invalid JSON format from model:\n" + raw);
+
+    const parsed = JSON.parse(match[0]);
+
+    // Sanity check for required fields
+    const required = ["name", "oneLiner", "elevatorPitch", "tagline"];
+    for (const field of required) {
+      if (!parsed[field]) {
+        throw new Error(`❌ Missing required field "${field}" in model response.`);
+      }
+    }
+
+    return parsed;
+  } catch (err) {
+    console.error("❌ Failed to parse JSON:", raw);
+    throw err;
+  }
 }
