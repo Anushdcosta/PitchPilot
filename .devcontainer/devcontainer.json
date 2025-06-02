@@ -19,5 +19,5 @@
       ]
     }
   },
-  "postCreateCommand": "npm install && cd frontend && npm install && cd .. && pip install diffusers accelerate transformers flask && echo \"GITHUB_MODEL_TOKEN=$GITHUB_MODEL_TOKEN\" > .env && echo \"VITE_API_BASE=https://${CODESPACE_NAME}-3000.app.github.dev\" > frontend/.env"
+  "postCreateCommand": "npm install && cd frontend && npm install && cd .. && pip install diffusers accelerate transformers flask && echo \"GITHUB_TOKEN=Your github token here (instructions in Readme file)\" > .env && echo \"VITE_API_BASE=https://${CODESPACE_NAME}-3000.app.github.dev\" > frontend/.env"
 }
