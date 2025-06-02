@@ -37,7 +37,7 @@ chmod +x setup.sh
 ```
 For the Github Token click the below button to visit the models page
 <p align="left">
-  <a href="https://ollama.com/download/windows](https://github.com/marketplace/models/azure-openai/gpt-4-1-mini" target="_blank">
+  <a href="https://github.com/marketplace/models/azure-openai/gpt-4-1-mini" target="_blank">
     <img src="https://img.shields.io/badge/Download%20Ollama-Windows-blue?style=for-the-badge&logo=windows" alt="Visit Github Models">
   </a>
 </p>
