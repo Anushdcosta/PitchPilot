@@ -1,22 +1,23 @@
-import { defineConfig, loadEnv } from "vite";
-import react from "@vitejs/plugin-react";
+import { defineConfig, loadEnv } from 'vite';
 
 export default defineConfig(({ mode }) => {
-  // Load .env file based on current mode (e.g., development)
-  const env = loadEnv(mode, process.cwd(), "");
-  console.log("Proxying to:", env.VITE_BACKEND_URL);
+  const env = loadEnv(mode, process.cwd(), '');
+
+  if (!env.VITE_API_BASE || !env.VITE_API_BASE.startsWith('http')) {
+    throw new Error('❌ VITE_API_BASE is missing or invalid in .env');
+  }
+  console.log("proxying to : " + env.VITE_API_BASE)
+
+
   return {
-    plugins: [react()],
     server: {
       proxy: {
-        "/api": {
-          target: env.VITE_BACKEND_URL,
+        '/api': {
+          target: env.VITE_API_BASE,
           changeOrigin: true,
-          secure: false,
-          rewrite: (path) => path.replace(/^\/api/, ""),
-        },
-
-      },
-    },
+          rewrite: path => path.replace(/^\/api/, '')
+        }
+      }
+    }
   };
 });
