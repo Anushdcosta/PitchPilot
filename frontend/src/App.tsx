@@ -18,7 +18,7 @@ export default function App() {
     setData(null);
 
     try {
-      const res = await fetch("http://localhost:3000/generate", {
+      const res = await fetch("/api/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ keywords }),
@@ -50,15 +50,17 @@ export default function App() {
     setData(null);
 
     try {
-      const res = await fetch("http://localhost:3000/generate", {
+      const res = await fetch("/api/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ keywords: "" }),
       });
+      const text = await res.text();
+      console.log("🧪 Raw response:", text);
 
-      const json = await res.json();
-      if (!res.ok) throw new Error(json.error || "Unknown error");
-      setData(json);
+      // const json = await res.json();
+      // if (!res.ok) throw new Error(json.error || "Unknown error");
+      // setData(json);
     } catch (err: any) {
       setError(err.message);
     } finally {

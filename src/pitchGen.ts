@@ -28,7 +28,7 @@ Respond EXACTLY in this format (no explanations, no extra text):
   });
 
   const model = new Ollama({
-    model: "nous-hermes2", // must be running locally in Ollama
+    model: "llama2", // must be running locally in Ollama
     temperature: 0.8,
     topP: 0.9,
   });
@@ -42,6 +42,8 @@ Respond EXACTLY in this format (no explanations, no extra text):
 
   let parsed;
   try {
+    console.log("🧠 Raw model output:\n", result.text);
+
     parsed = JSON.parse(result.text);
   } catch (err) {
     const match = result.text.match(/\{[\s\S]*\}/);

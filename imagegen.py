@@ -14,7 +14,7 @@ pipeline = DiffusionPipeline.from_pretrained(
     use_safetensors=True
 )
 pipeline.scheduler = DPMSolverMultistepScheduler.from_config(pipeline.scheduler.config)
-pipeline = pipeline.to("cuda")
+# pipeline = pipeline.to("cuda")
 
 @app.route("/generate-logo", methods=["POST"])
 def generate_logo():
