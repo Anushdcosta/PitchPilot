@@ -51,7 +51,7 @@ export default function PitchDetail() {
   }, [step]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/pitch/${id}`)
+    fetch(`/api/pitch/${id}`)
       .then((res) => res.json())
       .then(setPitch);
   }, [id]);
@@ -59,7 +59,7 @@ export default function PitchDetail() {
   useEffect(() => {
     if (submitted && pitch && !refinedSummary) {
       setRefining(true);
-      fetch("http://localhost:3000/refine", {
+      fetch("/api/refine", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ pitch, answers }),

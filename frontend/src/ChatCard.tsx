@@ -63,7 +63,7 @@ export default function ChatCard({ pitch, onReplaceOther }: any) {
     setLoading(true);
     setMenuVisible(false);
     try {
-      const res = await fetch("http://localhost:3000/remix", {
+      const res = await fetch("/api/remix", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ pitch }),
