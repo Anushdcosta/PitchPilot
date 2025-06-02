@@ -78,13 +78,17 @@ export default function App() {
 
   const replaceOtherCard = (sourcePitch: any, remixPitch: any) => {
     setData((prev) => {
-      if (!prev?.pitches) return null;
+      if (!prev?.pitches || prev.pitches.length < 2) return prev;
+
+      // Find the other pitch to replace
       const newPitches = prev.pitches.map((p) =>
-        p.name === sourcePitch.name ? remixPitch : p
+        p.name !== sourcePitch.name ? remixPitch : p
       );
+
       return { pitches: newPitches };
     });
   };
+
 
   return (
     <div className="min-h-screen bg-[#121212] text-white p-6 font-sans flex flex-col items-center">
