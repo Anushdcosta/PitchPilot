@@ -29,6 +29,13 @@ Click below to launch this project in a ready-to-code GitHub Codespace:
 
 [![Open in Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?repo=Anushdcosta/startup-pitcher&ref=main)
 
+Once the Window loads run the following commands:
+
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
 ## METHOD 2: 🧪 Local Development Setup
 
 This branch (`local-alternative`) is optimized for running locally on your own machine.
