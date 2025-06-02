@@ -6,8 +6,10 @@
       "version": "3.11"
     }
   },
-  "postCreateCommand": "npm install && cd frontend && npm install && cd .. && pip install diffusers accelerate transformers flask",
-  "forwardPorts": [3000, 5173],
+  "forwardPorts": [3000, 5173, 5001],
+  "hostRequirements": {
+    "cpus": 4
+  },
   "customizations": {
     "vscode": {
       "extensions": [
@@ -17,7 +19,5 @@
       ]
     }
   },
-  "hostRequirements": {
-    "cpus": 4
-  }
+  "postCreateCommand": "npm install && cd frontend && npm install && cd .. && pip install diffusers accelerate transformers flask && echo \"GITHUB_MODEL_TOKEN=$GITHUB_MODEL_TOKEN\" > .env && echo \"VITE_API_BASE=https://${CODESPACE_NAME}-3000.app.github.dev\" > frontend/.env"
 }
