@@ -103,7 +103,6 @@ app.post("/remix", async (req, res) => {
     res.status(500).json({ error: "Failed to remix pitch." });
   }
 });
-// routes/refine.ts (or directly in app.js)
 
 app.post("/refine/field", async (req, res) => {
   const { pitch, field } = req.body;
@@ -143,7 +142,6 @@ app.use((err, req, res, next) => {
 });
 
 
-// Start server
 app.listen(port, () => {
   console.log(`✅ Server running at http://localhost:${port}`);
 });
