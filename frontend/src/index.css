@@ -5,8 +5,9 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+body, h1, h2, h3, p, a {
   font-family: 'Inter', sans-serif;
+  font-size: 100%;
 }
 @keyframes glow-ring {
   0%,
