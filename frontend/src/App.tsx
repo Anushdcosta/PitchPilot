@@ -131,8 +131,8 @@ export default function App() {
                   <textarea
                     className="w-full bg-transparent text-white placeholder:text-gray-400 focus:outline-none resize-none"
                     rows={1}
-                    value={keywords} // ✅ This binds the visible value
-                    onChange={(e) => setKeywords(e.target.value)} // ✅ Keeps keywords in sync
+                    value={keywords}
+                    onChange={(e) => setKeywords(e.target.value)} 
                     placeholder="Describe your design"
                   />
 
