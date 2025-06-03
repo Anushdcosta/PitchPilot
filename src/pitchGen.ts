@@ -1,4 +1,4 @@
-import { Ollama } from "@langchain/ollama"; // ✅ latest
+import { Ollama } from "@langchain/ollama";
 import { PromptTemplate } from "@langchain/core/prompts";
 import { LLMChain } from "langchain/chains";
 
@@ -28,7 +28,7 @@ Respond EXACTLY in this format (no explanations, no extra text):
   });
 
   const model = new Ollama({
-    model: "nous-hermes2", // must be running locally in Ollama
+    model: "nous-hermes2",
     temperature: 0.8,
     topP: 0.9,
   });
