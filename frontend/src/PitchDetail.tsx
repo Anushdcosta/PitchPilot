@@ -107,8 +107,8 @@ export default function PitchDetail() {
   return (
     <div className="p-6 max-w-3xl mx-auto">
       <h1 className="text-3xl font-bold mb-2">{pitch.name}</h1>
-      <p className="italic mb-4 text-purple-300">{pitch.oneLiner}</p>
-      <p className="mb-4">{pitch.elevatorPitch}</p>
+      <p className="italic text-lg mb-4 text-purple-300">{pitch.oneLiner}</p>
+      <p className="mb-4 text-lg">{pitch.elevatorPitch}</p>
       <p className="text-sm text-gray-500">{pitch.tagline}</p>
 
       <div className="mt-10">
