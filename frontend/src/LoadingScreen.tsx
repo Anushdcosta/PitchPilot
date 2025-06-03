@@ -8,7 +8,6 @@ function getRandom(arr: string[]) {
 }
 
 function generateWordLoop(word: string) {
-  // Duplicate the word list for the loop effect
   return [word, ...Array(3).fill(getRandom(nouns)), word];
 }
 export default function LoadingScreen() {
