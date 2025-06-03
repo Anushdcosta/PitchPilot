@@ -4,9 +4,9 @@
   <p align="center">
     AI Startup Idea Generator
     <br />
-    <a href="https://github.com/Anushdcosta/startup-pitcher/issues/new?labels=bug&template=bug-report.md">Report Bug</a>
+    <a href="https://github.com/Anushdcosta/PitchPilot/issues/new?labels=bug&template=bug-report.md">Report Bug</a>
     ·
-    <a href="https://github.com/Anushdcosta/startup-pitcher/issues/new?labels=enhancement&template=feature-request.md">Request Feature</a>
+    <a href="https://github.com/Anushdcosta/PitchPilot/issues/new?labels=enhancement&template=feature-request.md">Request Feature</a>
   </p>
 </div>
 
@@ -37,7 +37,7 @@ An AI-powered tool that generates and refines startup pitch ideas based on user 
 
 Click below to launch this project in a ready-to-code GitHub Codespace:
 
-[![Open in Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?repo=Anushdcosta/startup-pitcher&ref=main)
+[![Open in Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?repo=Anushdcosta/PitchPilot&ref=main)
 
 Once the Window loads run the following commands:
 
@@ -94,7 +94,7 @@ ollama pull nous-hermes2
 
 ```bash
 ::1. Clone the repository
-git clone https://github.com/Anushdcosta/startup-pitcher
+git clone https://github.com/Anushdcosta/PitchPilot
 
 ::2. Change current directory
 cd startup-pitcher
