@@ -51,7 +51,7 @@ For the Github Token click the below button to visit the models page
     <img src="https://img.shields.io/badge/Visit%20Github-OpenAI 4.1 mini-blue?style=for-the-badge" alt="Visit Github Models">
   </a>
 </p>
-Click Use this Model and follow the steps to generate a fine grain token
+Click Use this Model and follow the steps to generate a fine grain token. This token will be entered into the .env file in root directory.
 
 Once Token is added Run the following command in Codespace terminal:
 ```bash
