@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { refineIdea } from "./refineIdea.js";
 import { regenerateField } from "./FieldRefiner.js";
 
-dotenv.config(); // Don't forget to call this
+dotenv.config(); 
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -105,8 +105,6 @@ app.post("/refine", async (req, res) => {
   }
 });
 
-
-// Start server
 app.listen(port, () => {
   console.log(`✅ Server running at http://localhost:${port}`);
 });
