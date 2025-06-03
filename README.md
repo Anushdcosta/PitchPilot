@@ -1,4 +1,14 @@
-# 🚀 Startup Idea Generator
+<div align="center">
+<img width="600" alt="header image" src="https://github.com/user-attachments/assets/427c1a9d-bb12-4689-9ad7-be3afccf378c">
+<h2 align="center">PitchPilot</h2>
+  <p align="center">
+    AI Startup Idea Generator
+    <br />
+    <a href="https://github.com/Anushdcosta/startup-pitcher/issues/new?labels=bug&template=bug-report.md">Report Bug</a>
+    ·
+    <a href="https://github.com/Anushdcosta/startup-pitcher/issues/new?labels=enhancement&template=feature-request.md">Request Feature</a>
+  </p>
+</div>
 
 An AI-powered tool that generates and refines startup pitch ideas based on user keywords. Built using Langchain.js, Tailwind CSS, React, and TypeScript.
 
@@ -23,13 +33,32 @@ An AI-powered tool that generates and refines startup pitch ideas based on user 
 # 🧑‍💻 Getting Started
 
 
-## ⚡ One-Click Codespaces Setup
+## METHOD 1:  ⚡ One-Click Codespaces Setup
 
 Click below to launch this project in a ready-to-code GitHub Codespace:
 
 [![Open in Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?repo=Anushdcosta/startup-pitcher&ref=main)
 
-## 🧪 Local Development Setup
+Once the Window loads run the following commands:
+
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+For the Github Token click the below button to visit the models page
+<p align="left">
+  <a href="https://github.com/marketplace/models/azure-openai/gpt-4-1-mini" target="_blank">
+    <img src="https://img.shields.io/badge/Visit%20Github-OpenAI 4.1 mini-blue?style=for-the-badge" alt="Visit Github Models">
+  </a>
+</p>
+Click Use this Model and follow the steps to generate a fine grain token
+
+Once Token is added Run the following command in Codespace terminal:
+```bash
+npm run dev
+```
+
+## METHOD 2: 🧪 Local Development Setup
 
 This branch (`local-alternative`) is optimized for running locally on your own machine.
 
@@ -38,8 +67,7 @@ This branch (`local-alternative`) is optimized for running locally on your own m
 ### 🔧 Prerequisites
 
 - Node.js (v18+)
-- Python 3.10+
-- npm & pip
+- npm
 - ollama
 
 ---
@@ -65,15 +93,18 @@ ollama pull nous-hermes2
 ## 🛠️ Getting Started
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/your-username/your-repo.git
+::1. Clone the repository
+git clone https://github.com/Anushdcosta/startup-pitcher
 
-# 2. Checkout the local branch
+::2. Change current directory
+cd startup-pitcher
+
+::2. Checkout the local branch
 git checkout local-alternative
 
-# 3. Install dependencies
+::3. Install dependencies
 .\setup.bat
 
-# 4. Start the development server
+::4. Start the development server
 npm run dev
 ```
