@@ -96,13 +96,13 @@ export default function ChatCard({ pitch, onReplaceOther }: any) {
         {/* Title + One Liner */}
         <div className="mb-3">
           <h2 className="text-2xl font-bold leading-snug">{pitch.name}</h2>
-          <p className="italic text-sm text-gray-300 leading-snug mt-1">
+          <p className="italic text-m text-gray-300 leading-snug mt-1">
             “{pitch.oneLiner}”
           </p>
         </div>
 
         {/* Main Description */}
-        <p className="text-sm text-gray-200 leading-relaxed mb-4">
+        <p className="text-lg text-gray-200 leading-relaxed mb-4">
           {pitch.elevatorPitch}
         </p>
 
