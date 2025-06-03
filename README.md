@@ -1,4 +1,14 @@
-# 🚀 Startup Idea Generator
+<div align="center">
+<img width="600" alt="header image" src="https://github.com/user-attachments/assets/427c1a9d-bb12-4689-9ad7-be3afccf378c">
+<h2 align="center">PitchPilot</h2>
+  <p align="center">
+    AI Startup Idea Generator
+    <br />
+    <a href="https://github.com/Anushdcosta/startup-pitcher/issues/new?labels=bug&template=bug-report.md">Report Bug</a>
+    ·
+    <a href="https://github.com/Anushdcosta/startup-pitcher/issues/new?labels=enhancement&template=feature-request.md">Request Feature</a>
+  </p>
+</div>
 
 An AI-powered tool that generates and refines startup pitch ideas based on user keywords. Built using Langchain.js, Tailwind CSS, React, and TypeScript.
 
