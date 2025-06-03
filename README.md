@@ -84,7 +84,7 @@ ollama pull nous-hermes2
 
 ```bash
 ::1. Clone the repository
-git clone https://github.com/your-username/your-repo.git
+git clone https://github.com/Anushdcosta/startup-pitcher
 
 ::2. Checkout the local branch
 git checkout local-alternative
