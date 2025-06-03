@@ -30,8 +30,7 @@ Return ONLY a JSON object like this:
 {
   "${field}": "..."
 }
-
-⚠️ No extra text. Return only a valid JSON object.
+No extra text. Return only a valid JSON object.
 `.trim();
 
   console.debug("📨 Sending prompt to model...");
