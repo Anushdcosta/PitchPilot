@@ -86,6 +86,9 @@ ollama pull nous-hermes2
 ::1. Clone the repository
 git clone https://github.com/Anushdcosta/startup-pitcher
 
+::2. Change current directory
+cd startup-pitcher
+
 ::2. Checkout the local branch
 git checkout local-alternative
 
