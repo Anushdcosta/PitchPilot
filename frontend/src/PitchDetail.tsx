@@ -26,7 +26,7 @@ export default function PitchDetail() {
     const savedSubmitted = localStorage.getItem(`pitch-${id}-submitted`);
 
     if (savedAnswers) setAnswers(JSON.parse(savedAnswers));
-    if (savedSummary) setRefinedSummary(JSON.parse(savedSummary)); // ✅ FIXED HERE
+    if (savedSummary) setRefinedSummary(JSON.parse(savedSummary));
     if (savedSubmitted === "true") setSubmitted(true);
   }, [id]);
 
