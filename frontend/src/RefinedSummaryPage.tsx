@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { RefreshCw } from "lucide-react";
 import jsPDF from "jspdf";
+import { Section } from "./Section"; // Assume Section is now in a separate file or placed above
 
 export default function RefinedSummaryPage() {
   const { id } = useParams();
@@ -18,10 +19,7 @@ export default function RefinedSummaryPage() {
       const res = await fetch("/api/refine/field", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          pitch: latest,
-          field,
-        }),
+        body: JSON.stringify({ pitch: latest, field }),
       });
 
       const data = await res.json();
@@ -37,7 +35,7 @@ export default function RefinedSummaryPage() {
       setLoadingField(null);
     } catch (err) {
       console.error("Shuffle failed:", err);
-      alert("❌ Failed to shuffle field. Please try again.");
+      alert("\u274C Failed to shuffle field. Please try again.");
     }
   };
 
@@ -74,67 +72,6 @@ export default function RefinedSummaryPage() {
     doc.save(`${refinedSummary.name || "Startup"}_Summary.pdf`);
   };
 
-  const Section = ({
-    label,
-    value,
-    fieldKey,
-  }: {
-    label: string;
-    value?: string;
-    fieldKey: string;
-  }) => {
-    if (value === undefined) return null;
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const updated = {
-        ...refinedSummary,
-        [fieldKey]: e.target.value,
-      };
-      setRefinedSummary(updated);
-      if (id) {
-        localStorage.setItem(`pitch-${id}-refinedSummary`, JSON.stringify(updated));
-      }
-    };
-
-    const isMultiline = value.length > 80 || fieldKey === "elevatorPitch";
-
-    return (
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-2 flex-wrap">
-          <h3 className="text-lg font-semibold text-blue-400">{label}</h3>
-          <button
-            onClick={() => handleShuffle(fieldKey)}
-            disabled={loadingField === fieldKey}
-            className={`text-sm ${
-              loadingField === fieldKey
-                ? "text-gray-400 cursor-not-allowed"
-                : "text-gray-300 hover:text-white"
-            } flex items-center gap-1`}
-          >
-            <RefreshCw className={`w-4 h-4 ${loadingField === fieldKey ? "animate-spin" : ""}`} />
-            {loadingField === fieldKey ? "Shuffling..." : "Shuffle"}
-          </button>
-        </div>
-
-        {isMultiline ? (
-          <textarea
-            className="w-full p-3 rounded-lg border border-gray-500 text-base leading-relaxed bg-[#f9f9f9] text-black resize-none"
-            rows={4}
-            value={value}
-            onChange={handleChange}
-          />
-        ) : (
-          <input
-            className="w-full p-3 rounded-lg border border-gray-500 text-base leading-relaxed bg-[#f9f9f9] text-black"
-            type="text"
-            value={value}
-            onChange={handleChange}
-          />
-        )}
-      </div>
-    );
-  };
-
   useEffect(() => {
     const stored = localStorage.getItem(`pitch-${id}-refinedSummary`);
     if (stored) {
@@ -158,7 +95,6 @@ export default function RefinedSummaryPage() {
           parsed.risks = parsed.risks || extractField("Potential Challenges");
           parsed.uniquePoint = parsed.uniquePoint || extractField("Uniqueness");
         }
-
         setRefinedSummary(parsed);
       } catch (err) {
         console.error("Failed to parse refined summary:", err);
@@ -167,31 +103,28 @@ export default function RefinedSummaryPage() {
   }, [id]);
 
   if (!refinedSummary)
-    return <p className="text-center text-gray-400">⏳ Loading summary...</p>;
+    return <p className="text-center text-gray-400">\u23F3 Loading summary...</p>;
 
   return (
-    <div style={{width: "60vw"}} className="max-w-5xl mx-auto p-6 text-white">
-      <h1 className="text-3xl font-bold text-blue-500 mb-6">💡 Refined Startup Summary</h1>
-
+    <div style={{ width: "60vw" }} className="max-w-5xl mx-auto p-6 text-white">
+      <h1 className="text-3xl font-bold text-blue-500 mb-6">Refined Startup Summary</h1>
       <div className="bg-[#1e1e1e] text-white p-6 rounded-lg border border-gray-700 shadow space-y-6">
-        <Section label="Startup Name" value={refinedSummary.name || "N/A"} fieldKey="name" />
-        <Section label="One-liner" value={refinedSummary.oneLiner} fieldKey="oneLiner" />
-        <Section label="Elevator Pitch" value={refinedSummary.elevatorPitch} fieldKey="elevatorPitch" />
-        <Section label="Tagline" value={refinedSummary.tagline} fieldKey="tagline" />
-        <Section label="Vision" value={refinedSummary.vision} fieldKey="vision" />
-        <Section label="Target Audience" value={refinedSummary.targetAudience} fieldKey="targetAudience" />
-        <Section label="Planned Features" value={refinedSummary.features} fieldKey="features" />
-        <Section label="Tools/Tech Stack" value={refinedSummary.tools} fieldKey="tools" />
-        <Section label="Risks & Challenges" value={refinedSummary.risks} fieldKey="risks" />
-        <Section label="Unique Value" value={refinedSummary.uniquePoint} fieldKey="uniquePoint" />
+        <Section label="Startup Name" value={refinedSummary.name} fieldKey="name" {...{ refinedSummary, setRefinedSummary, loadingField, handleShuffle, id }} />
+        <Section label="One-liner" value={refinedSummary.oneLiner} fieldKey="oneLiner" {...{ refinedSummary, setRefinedSummary, loadingField, handleShuffle, id }} />
+        <Section label="Elevator Pitch" value={refinedSummary.elevatorPitch} fieldKey="elevatorPitch" {...{ refinedSummary, setRefinedSummary, loadingField, handleShuffle, id }} />
+        <Section label="Tagline" value={refinedSummary.tagline} fieldKey="tagline" {...{ refinedSummary, setRefinedSummary, loadingField, handleShuffle, id }} />
+        <Section label="Vision" value={refinedSummary.vision} fieldKey="vision" {...{ refinedSummary, setRefinedSummary, loadingField, handleShuffle, id }} />
+        <Section label="Target Audience" value={refinedSummary.targetAudience} fieldKey="targetAudience" {...{ refinedSummary, setRefinedSummary, loadingField, handleShuffle, id }} />
+        <Section label="Planned Features" value={refinedSummary.features} fieldKey="features" {...{ refinedSummary, setRefinedSummary, loadingField, handleShuffle, id }} />
+        <Section label="Tools/Tech Stack" value={refinedSummary.tools} fieldKey="tools" {...{ refinedSummary, setRefinedSummary, loadingField, handleShuffle, id }} />
+        <Section label="Risks & Challenges" value={refinedSummary.risks} fieldKey="risks" {...{ refinedSummary, setRefinedSummary, loadingField, handleShuffle, id }} />
+        <Section label="Unique Value" value={refinedSummary.uniquePoint} fieldKey="uniquePoint" {...{ refinedSummary, setRefinedSummary, loadingField, handleShuffle, id }} />
       </div>
-
       <div className="mt-6 flex gap-4">
         <button
           onClick={handleTextOnlyPDF}
           className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition font-semibold"
-        >
-          📄 Export Clean PDF
+        >Export Clean PDF
         </button>
       </div>
     </div>
