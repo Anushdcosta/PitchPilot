@@ -26,7 +26,7 @@ export default function PitchDetail() {
     const savedSubmitted = localStorage.getItem(`pitch-${id}-submitted`);
 
     if (savedAnswers) setAnswers(JSON.parse(savedAnswers));
-    if (savedSummary) setRefinedSummary(JSON.parse(savedSummary)); // ✅ FIXED HERE
+    if (savedSummary) setRefinedSummary(JSON.parse(savedSummary));
     if (savedSubmitted === "true") setSubmitted(true);
   }, [id]);
 
@@ -179,13 +179,6 @@ export default function PitchDetail() {
                 📄 View Summary Report
               </button>
             </Link>
-
-            {/* <button
-              onClick={handleExportPDF}
-              className="mt-4 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition font-semibold"
-            >
-              📄 Export as PDF
-            </button> */}
           </div>
         )}
       </div>
