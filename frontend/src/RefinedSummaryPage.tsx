@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { RefreshCw } from "lucide-react";
 import jsPDF from "jspdf";
-import { Section } from "./Section"; // Assume Section is now in a separate file or placed above
+import { Section } from "./Section";
 
 export default function RefinedSummaryPage() {
   const { id } = useParams();
