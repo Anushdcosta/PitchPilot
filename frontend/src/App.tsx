@@ -129,7 +129,7 @@ export default function App() {
       >
         {isDarkMode ? '☀️ Light' : '🌙 Dark'}
       </button>
-      <div className="min-h-screen bg-[#121212] text-white p-6 font-sans flex flex-col items-center">
+      <div className="min-h-screen dark:bg-[#121212] dark:text-white p-6 font-sans flex flex-col items-center">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
         <Toaster />
   
@@ -147,7 +147,7 @@ export default function App() {
                   onSubmit={handleSubmit}
                   className="w-full max-w-2xl flex flex-col gap-2 justify-center mb-6"
                 >
-                  <div className="relative border border-gray-700 rounded-xl p-4 bg-[#1e1e1e] ring-1 ring-blue-500">
+                  <div className="relative border border-gray-700 rounded-xl p-4 dark:bg-[#1e1e1e] ring-1 ring-blue-500">
                     <textarea
                       className="w-full bg-transparent text-white placeholder:text-gray-400 focus:outline-none resize-none"
                       rows={1}
