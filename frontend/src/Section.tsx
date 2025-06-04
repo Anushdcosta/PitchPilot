@@ -45,10 +45,10 @@ export const Section = memo(function Section({
           onClick={() => handleShuffle(fieldKey)}
           disabled={loadingField === fieldKey}
           className={`text-sm ${
-            loadingField === fieldKey
-              ? "text-gray-400 cursor-not-allowed"
-              : "text-gray-300 hover:text-white"
-          } flex items-center gap-1`}
+              loadingField === fieldKey
+                ? "text-gray-800 dark:text-gray-400 cursor-not-allowed"
+                : "text-gray-800 dark:text-gray-300 hover:text-gray-500 dark:hover:text-white"
+            } flex items-center gap-1`}
         >
           <RefreshCw
             className={`w-4 h-4 ${
