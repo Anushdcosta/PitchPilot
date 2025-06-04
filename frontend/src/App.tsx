@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ChatCard from "./ChatCard";
 import LoadingScreen from "./LoadingScreen";
 import { Toaster } from "react-hot-toast";
@@ -202,6 +202,7 @@ export default function App() {
           <Route path="/pitch/:id" element={<PitchDetail />} />
           <Route path="/pitch/:id/summary" element={<RefinedSummaryPage />} />
         </Routes>
+      </div>
       </div>
   );
 }
