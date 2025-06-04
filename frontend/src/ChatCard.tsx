@@ -90,7 +90,9 @@ export default function ChatCard({ pitch, onReplaceOther }: any) {
     <div
       onClick={handleClick}
       onContextMenu={handleRightClick}
-      className="ideacard relative max-w-xl w-full mx-auto p-[1px] rounded-2xl bg-gradient-to-br from-purple-500/40 to-pink-500/30 shadow-xl animate-glow-ring overflow-hidden min-h-[300px]"
+      className="ideacard relative max-w-xl w-full mx-auto p-[1px] rounded-2xl 
+      bg-gradient-to-br from-purple-800/90 to-pink-800/80 dark:from-purple-500/40 dark:to-pink-500/30 
+      shadow-xl animate-glow-ring overflow-hidden min-h-[300px]"
     >
       <div className="h-full backdrop-blur-lg bg-white/10 text-white p-6 rounded-2xl flex flex-col">
         {/* Title + One Liner */}
