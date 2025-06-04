@@ -107,8 +107,8 @@ export default function RefinedSummaryPage() {
             disabled={loadingField === fieldKey}
             className={`text-sm ${
               loadingField === fieldKey
-                ? "text-gray-400 cursor-not-allowed"
-                : "text-gray-300 hover:text-white"
+                ? "text-gray-800 dark:text-gray-400 cursor-not-allowed"
+                : "text-gray-800 dark:text-gray-300 hover:text-gray-500 dark:hover:text-white"
             } flex items-center gap-1`}
           >
             <RefreshCw className={`w-4 h-4 ${loadingField === fieldKey ? "animate-spin" : ""}`} />
@@ -170,10 +170,10 @@ export default function RefinedSummaryPage() {
     return <p className="text-center text-gray-400">⏳ Loading summary...</p>;
 
   return (
-    <div style={{width: "60vw"}} className="max-w-5xl mx-auto p-6 text-white">
+    <div style={{width: "60vw"}} className="max-w-5xl mx-auto p-6 dark:text-white">
       <h1 className="text-3xl font-bold text-blue-500 mb-6">💡 Refined Startup Summary</h1>
 
-      <div className="bg-[#1e1e1e] text-white p-6 rounded-lg border border-gray-700 shadow space-y-6">
+      <div className="dark:bg-[#1e1e1e] text-white p-6 rounded-lg border border-gray-700 shadow space-y-6">
         <Section label="Startup Name" value={refinedSummary.name || "N/A"} fieldKey="name" />
         <Section label="One-liner" value={refinedSummary.oneLiner} fieldKey="oneLiner" />
         <Section label="Elevator Pitch" value={refinedSummary.elevatorPitch} fieldKey="elevatorPitch" />
