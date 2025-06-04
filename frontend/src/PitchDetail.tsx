@@ -100,23 +100,12 @@ export default function PitchDetail() {
     step < questions.length - 1 ? setStep(step + 1) : setSubmitted(true);
   };
 
-  const handleExportPDF = () => {
-    const element = document.getElementById("refined-summary-block");
-    if (!element) return;
-    html2pdf().set({
-      margin: 0.75,
-      filename: `${pitch.name}_RefinedSummary.pdf`,
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
-    }).from(element).save();
-  };
-
   if (!pitch) return <div>Loading...</div>;
 
   return (
     <div className="p-6 max-w-3xl mx-auto">
       <h1 className="text-3xl font-bold mb-2">{pitch.name}</h1>
-      <p className="italic mb-4 text-purple-300">{pitch.oneLiner}</p>
+      <p className="italic text-lg mb-4 text-purple-800 dark:text-purple-300">{pitch.oneLiner}</p>
       <p className="mb-4">{pitch.elevatorPitch}</p>
       <p className="text-sm text-gray-500">{pitch.tagline}</p>
 
@@ -127,7 +116,7 @@ export default function PitchDetail() {
           <>
             <label className="block mb-2 font-medium">{questions[step]}</label>
             <textarea
-              className="w-full p-3 rounded bg-[#1e1e1e] text-white border border-gray-600 mb-4"
+              className="w-full p-3 rounded dark:bg-[#1e1e1e] dark:text-white border border-gray-600 mb-4"
               rows={4}
               value={answers[step]}
               onChange={handleInputChange}
@@ -143,7 +132,7 @@ export default function PitchDetail() {
         ) : (
           <div className="mt-6">
             <h3 className="text-lg font-semibold mb-2 text-green-400">✅ Done! Here's your vision:</h3>
-            <ul className="list-disc ml-5 space-y-2 text-white/90">
+            <ul className="list-disc ml-5 space-y-2 dark:text-white/90">
               {questions.map((q, i) => (
                 <li key={i}>
                   <strong>{q}</strong><br />
@@ -154,7 +143,7 @@ export default function PitchDetail() {
               ))}
             </ul>
 
-            <div id="refined-summary-block" className="mt-8 bg-white text-gray-800 p-6 rounded shadow-md print:bg-white print:text-black">
+            <div id="refined-summary-block" className="mt-8 bg-white text-gray-800 p-6 rounded shadow-lg print:bg-white print:text-black border dark:border-0">
               <h2 className="text-xl font-bold mb-4 text-blue-600">💡 Refined Startup Summary</h2>
               {refining && <p className="italic text-gray-500">Refining your idea with AI...</p>}
 
