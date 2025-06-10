@@ -149,7 +149,7 @@ export default function App() {
                 >
                   <div className="relative border border-gray-700 rounded-xl p-4 dark:bg-[#1e1e1e] ring-1 ring-blue-500">
                     <textarea
-                      className="w-full bg-transparent text-white placeholder:text-gray-400 focus:outline-none resize-none"
+                      className="w-full bg-transparent text-black placeholder:text-gray-400 focus:outline-none resize-none"
                       rows={1}
                       value={keywords} 
                       onChange={(e) => setKeywords(e.target.value)}
